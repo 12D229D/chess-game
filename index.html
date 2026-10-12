@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajedrez — Motor Minimax & 2 Jugadores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>♟️ Ajedrez</h1>
+      <div class="controls">
+        <button id="newGameBtn" class="btn">Nueva partida</button>
+        <button id="undoBtn" class="btn" disabled>Deshacer</button>
+        <div class="mode-toggle">
+          <span class="mode-label">2 jugadores</span>
+          <label class="switch">
+            <input type="checkbox" id="aiToggle">
+            <span class="slider"></span>
+          </label>
+          <span class="mode-label">vs IA</span>
+        </div>
+        <div id="aiOptions" class="ai-options hidden">
+          <label class="select-label">
+            Color
+            <select id="humanColor" class="select">
+              <option value="w">Blancas</option>
+              <option value="b">Negras</option>
+            </select>
+          </label>
+          <label class="select-label">
+            Dificultad
+            <select id="aiDepth" class="select">
+              <option value="1">Fácil</option>
+              <option value="3" selected>Medio</option>
+              <option value="5">Difícil</option>
+            </select>
+          </label>
+        </div>
+        <label class="sound-toggle">
+          <input type="checkbox" id="soundToggle" checked>
+          Sonido
+        </label>
+      </div>
+    </header>
+    <main>
+      <div class="board-wrapper">
+        <div class="board-with-coords">
+          <div class="coord-spacer"></div>
+          <div id="fileCoordsTop" class="file-coords">a b c d e f g h</div>
+          <div class="coord-spacer"></div>
+          <div id="rankCoordsLeft" class="rank-coords"></div>
+          <div id="board"></div>
+          <div id="rankCoordsRight" class="rank-coords"></div>
+          <div class="coord-spacer"></div>
+          <div id="fileCoordsBottom" class="file-coords">a b c d e f g h</div>
+          <div class="coord-spacer"></div>
+        </div>
+        <div id="aiThinking" class="thinking hidden">Pensando...</div>
+      </div>
+      <aside class="side-panel">
+        <div id="status">Turno de las blancas</div>
+        <div class="captured-section">
+          <h3>Capturadas</h3>
+          <div id="captured-white" class="captured"></div>
+          <div id="captured-black" class="captured"></div>
+        </div>
+        <div class="history-section">
+          <h3>Historial</h3>
+          <div id="moveHistory"><div class="empty-history">Aún no hay movimientos</div></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="promotionDialog" class="modal hidden">
+    <div class="modal-content">
+      <h2>Promoción de peón</h2>
+      <p>Elige una pieza:</p>
+      <div id="promotionChoices" class="promotion-choices"></div>
+    </div>
+  </div>
+
+  <div id="gameOverDialog" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="gameOverTitle"></h2>
+      <p id="gameOverMessage"></p>
+      <button id="gameOverNewGame" class="btn">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

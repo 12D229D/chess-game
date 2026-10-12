@@ -1,0 +1,11 @@
+{
+  "name": "chess-game",
+  "version": "1.0.0",
+  "description": "Juego de ajedrez en HTML5 con modo 2 jugadores y vs IA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["chess", "ajedrez", "game"],
+  "license": "MIT"
+}
